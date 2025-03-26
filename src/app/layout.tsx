@@ -1,19 +1,18 @@
-// src/app/layout.tsx
 import './globals.css';
-import ClientNavbar from '@/components/ClientNavbar';
+import { Inter } from 'next/font/google';
+import 'react-big-calendar/lib/css/react-big-calendar.css'; // Add this import
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Farm Management System',
-  description: 'Manage your farm efficiently',
+  title: 'FarmApp',
+  description: 'Farm Management Application',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        <ClientNavbar />
-        <main>{children}</main>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
