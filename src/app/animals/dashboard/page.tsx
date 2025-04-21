@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { CurrencyDollarIcon, TrashIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
-import Layout from '../../components/Layout';
+import Layout from '../../../components/Layout';
 
 interface AnimalType {
   type: string;

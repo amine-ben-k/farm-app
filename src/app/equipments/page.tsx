@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { PencilIcon, TrashIcon, PlusIcon, CurrencyDollarIcon } from '@heroicons/react/24/outline';
+import { useRouter } from 'next/navigation'; // Import useRouter
+import { PencilIcon, TrashIcon, PlusIcon, CurrencyDollarIcon, ChartBarIcon } from '@heroicons/react/24/outline';
 import Layout from '../../components/Layout';
 
 interface Equipment {
@@ -24,6 +25,7 @@ interface EquipmentTransaction {
 }
 
 export default function EquipmentsPage() {
+  const router = useRouter(); // Initialize useRouter for navigation
   const [equipments, setEquipments] = useState<Equipment[]>([]);
   const [transactions, setTransactions] = useState<EquipmentTransaction[]>([]);
 
@@ -312,15 +314,24 @@ export default function EquipmentsPage() {
     <Layout>
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <h1 className="text-3xl font-bold text-gray-800">Manage Equipment</h1>
-          <button
-            onClick={() => setShowAddEquipmentModal(true)}
-            className="flex items-center gap-2 bg-green-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-700 transition-colors"
-          >
-            <PlusIcon className="h-5 w-5" />
-            Add New Equipment
-          </button>
+          <div className="flex gap-3">
+            <button
+              onClick={() => router.push('/equipments/dashboard')} // Navigate to the dashboard
+              className="flex items-center gap-2 bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+            >
+              <ChartBarIcon className="h-5 w-5" aria-hidden="true" />
+              <span>View Dashboard</span>
+            </button>
+            <button
+              onClick={() => setShowAddEquipmentModal(true)}
+              className="flex items-center gap-2 bg-green-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors"
+            >
+              <PlusIcon className="h-5 w-5" aria-hidden="true" />
+              <span>Add New Equipment</span>
+            </button>
+          </div>
         </div>
 
         {error && (

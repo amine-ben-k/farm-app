@@ -1,23 +1,13 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import Layout from '../components/Layout';
+import Layout from '../../components/Layout';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
 import { Pie, Bar } from 'react-chartjs-2';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
-
-// Define navItems with conditional managePath to exclude "Manage" links for Home and Schedule
-const navItems = [
-  { name: 'Home', icon: 'HomeIcon', dashboardPath: '/', managePath: null }, // No Manage link for Home
-  { name: 'Workers', icon: 'UserIcon', dashboardPath: '/workers/dashboard', managePath: '/workers' },
-  { name: 'Animals', icon: 'HeartIcon', dashboardPath: '/animals/dashboard', managePath: '/animals' },
-  { name: 'Crops', icon: 'SunIcon', dashboardPath: '/crops/dashboard', managePath: '/crops' },
-  { name: 'Equipments', icon: 'WrenchIcon', dashboardPath: '/equipments/dashboard', managePath: '/equipments' },
-  { name: 'Schedule', icon: 'CalendarIcon', dashboardPath: '/schedule/dashboard', managePath: null }, // No Manage link for Schedule
-];
 
 interface Summary {
   totalEarnings: number;
@@ -79,7 +69,7 @@ export default function DashboardPage() {
 
   if (!data) {
     return (
-      <Layout {...{ navItems }}>
+      <Layout>
         <div className="flex justify-center items-center h-screen">
           <p className="text-gray-500 text-lg">Loading dashboard...</p>
         </div>
@@ -162,7 +152,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <Layout {...{ navItems }}>
+    <Layout>
       <div className="space-y-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
@@ -202,7 +192,7 @@ export default function DashboardPage() {
 
         {/* Key Metrics Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          <div className="bg-white shadow-md rounded-lg p-4 flex items-center gap-3 transform hover:scale-105 transition-transform">
+          <div className="bg-white shadow-md rounded-lg p-4 flex items-center gap-3 transform Hover:scale-105 transition-transform">
             <div className="bg-green-100 p-2 rounded-full">
               <svg className="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 8c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"></path>
@@ -213,7 +203,7 @@ export default function DashboardPage() {
               <p className="text-lg font-bold text-green-600">{formatNumber(data.summary.totalEarnings)} TND</p>
             </div>
           </div>
-          <div className="bg-white shadow-md rounded-lg p-4 flex items-center gap-3 transform hover:scale-105 transition-transform">
+          <div className="bg-white shadow-md rounded-lg p-4 flex items-center gap-3 transform Hover:scale-105 transition-transform">
             <div className="bg-red-100 p-2 rounded-full">
               <svg className="h-5 w-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 8c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"></path>
@@ -224,7 +214,7 @@ export default function DashboardPage() {
               <p className="text-lg font-bold text-red-600">{formatNumber(data.summary.totalCosts)} TND</p>
             </div>
           </div>
-          <div className="bg-white shadow-md rounded-lg p-4 flex items-center gap-3 transform hover:scale-105 transition-transform">
+          <div className="bg-white shadow-md rounded-lg p-4 flex items-center gap-3 transform Hover:scale-105 transition-transform">
             <div className="bg-purple-100 p-2 rounded-full">
               <svg className="h-5 w-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 8c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"></path>
@@ -240,7 +230,7 @@ export default function DashboardPage() {
               </p>
             </div>
           </div>
-          <div className="bg-white shadow-md rounded-lg p-4 flex items-center gap-3 transform hover:scale-105 transition-transform">
+          <div className="bg-white shadow-md rounded-lg p-4 flex items-center gap-3 transform Hover:scale-105 transition-transform">
             <div className="bg-blue-100 p-2 rounded-full">
               <svg className="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 8c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"></path>
@@ -251,7 +241,7 @@ export default function DashboardPage() {
               <p className="text-lg font-bold text-blue-600">{data.summary.totalAnimals}</p>
             </div>
           </div>
-          <div className="bg-white shadow-md rounded-lg p-4 flex items-center gap-3 transform hover:scale-105 transition-transform">
+          <div className="bg-white shadow-md rounded-lg p-4 flex items-center gap-3 transform Hover:scale-105 transition-transform">
             <div className="bg-blue-100 p-2 rounded-full">
               <svg className="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 8c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"></path>
